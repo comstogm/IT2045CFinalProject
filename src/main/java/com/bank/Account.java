@@ -4,6 +4,7 @@ public class Account {
     public double balance;
     public double interest;
     public int periods;
+    public int accountNumber;
 
     public double getBalance() {
         return balance;
@@ -24,6 +25,12 @@ public class Account {
     }
     public void setPeriods(int periods) {
         this.periods = periods;
+    }
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+    public void setAccountNumber(int accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     /**

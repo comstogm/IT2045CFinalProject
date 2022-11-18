@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+
 public class BankerForm {
     private JPanel pnlMain;
     private JPanel pnlButtonBar;
@@ -29,6 +30,15 @@ public class BankerForm {
     public BankerForm() {
         
         initializeAccountTypeComboBox();
+
+        JsonReader.readAccounts();
+
+        /**
+         * Creates a new vector from the vector provided by JsonReader.fetchAccounts
+         * Then adds that vector to the allAccounts vector that is modified by this form
+         */
+        Vector<Account> readAccounts = JsonReader.fetchAccounts();
+        allAccounts.addAll(readAccounts);
 
         lstAccounts.setListData(allAccounts);
 
