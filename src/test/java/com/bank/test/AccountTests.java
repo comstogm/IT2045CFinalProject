@@ -47,4 +47,26 @@ public class AccountTests {
         assertEquals(MATURITY, certificateOfDeposit.getMaturity());
     }
 
+    /*
+    Allow the user to make a withdrawal from accounts,
+    and automatically pick the account that pays the lowest interest rate to deduct the money withdrawn.
+    Show a report of interest earned.
+     */
+
+    /*
+    Want to write given, when, then methods and then call the three together
+     */
+
+    /*
+    Given two accounts...
+     */
+
+    /*
+    When withdraw this amount of money
+     */
+
+    /*
+    Then account with the lowest interest will have money taken out of the account
+     */
+
 }
