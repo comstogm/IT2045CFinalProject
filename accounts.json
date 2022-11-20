@@ -1,21 +1,18 @@
-
 [
   {
-    "account": {
-      "accountType": "Checking",
-      "balance": "5000",
-      "interest": "1",
-      "periods": "3",
-      "accountNumber": "123456"
-    }
-},
+    "type":"Checking","properties":
+  {"interest":5.0,"balance":10000.0,"periods":10}
+  },
   {
-    "account": {
-      "accountType": "Savings",
-      "balance": "2000",
-      "interest": "2",
-      "periods": "2",
-      "accountNumber": "8675309"
-    }
+    "type":"Savings","properties":
+  {"interest":5.0,"balance":10000.0,"periods":10}
+  },
+  {
+    "type":"CertificateOfDeposit","properties":
+  {"maturity":12,"interest":5.0,"balance":10000.0,"periods":10}
+  },
+  {
+    "type":"Checking","properties":
+  {"interest":10.0,"balance":20000.0,"periods":5}
   }
 ]

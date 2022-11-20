@@ -33,21 +33,16 @@ public class JsonReader {
 
     public static void parseAccountObject (JSONObject newReadAccount) {
         //gets the object from the JSON file and converts to correct format
-        JSONObject jsonAccount = (JSONObject) newReadAccount.get("account");
+        JSONObject jsonAccount = (JSONObject) newReadAccount.get("properties");
 
-        String accountType = (String) jsonAccount.get("accountType");
-        String strBalance = (String) jsonAccount.get("balance");
-        double balance = Double.parseDouble(strBalance);
-        String strInterest = (String) jsonAccount.get("interest");
-        double interest = Double.parseDouble(strInterest);
-        String strPeriods = (String) jsonAccount.get("periods");
-        int periods = Integer.parseInt(strPeriods);
-        String strAccountNumber = (String) jsonAccount.get("accountNumber");
-        int accountNumber = Integer.parseInt(strAccountNumber);
+        String accountType = (String) newReadAccount.get("type");
+        Double balance = (Double) jsonAccount.get("balance");
+        Double interest = (Double) jsonAccount.get("interest");
+        Long lPeriods = (long) jsonAccount.get("periods");
+        Integer periods = lPeriods.intValue();
 
         //Creates a new object of type specified in Json file and assigns values to it
         Account account = Banker.getInstance().createAccount(accountType);
-        account.setAccountNumber(accountNumber);
         account.setBalance(balance);
         account.setInterest(interest);
         account.setPeriods(periods);
