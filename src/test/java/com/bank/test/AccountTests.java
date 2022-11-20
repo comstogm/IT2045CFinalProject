@@ -103,6 +103,7 @@ public class AccountTests {
      */
 
     private void thenAccount2BalanceDecreasesBy500() {
+        //assertEquals("account2", accounts.peek());
         assertEquals(3500, accounts.peek().getBalance());
     }
 
