@@ -1,13 +1,20 @@
 package com.bank.test;
 
+import com.bank.Account;
 import com.bank.CertificateOfDeposit;
 import com.bank.Checking;
 import com.bank.Savings;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AccountTests {
+
+    private Account account;
+    private Queue<Account> accounts = new LinkedList<>();
 
     @Test
     public void computeChecking_validate10Periods5Interest() {
@@ -49,8 +56,11 @@ public class AccountTests {
 
     /*
     Allow the user to make a withdrawal from accounts,
-    and automatically pick the account that pays the lowest interest rate to deduct the money withdrawn.
+        and automatically pick the account that pays the lowest interest rate to deduct the money withdrawn.
     Show a report of interest earned.
+
+    Test created here because action (withdrawal) can be done on any of the accounts
+        and the action is the same for any of them
      */
 
     /*
@@ -58,15 +68,40 @@ public class AccountTests {
      */
 
     /*
-    Given two accounts...
+    Given two accounts and place them in priority queue
      */
+
+    @Test
+    private void givenAccountWithInterestPoint03PercentAndBalanceOf5000() {
+        Account account1 = new Account();
+        account.setInterest(.03);
+        account.setBalance(5000);
+        accounts.offer(account1)
+    }
+
+    @Test
+    private void givenAccountWithInterestTwoPercentAndBalanceOf4000() {
+        Account account2 = new Account();
+        account.setInterest(2);
+        account.setBalance(3000);
+        accounts.offer(account2)
+    }
 
     /*
     When withdraw this amount of money
      */
 
+    @Test
+    private void whenWithdraw500() {
+        accounts.withdraw(500);
+    }
+
     /*
     Then account with the lowest interest will have money taken out of the account
      */
+
+    private void thenAccount2BalanceDecreasesBy500() {
+        assertEquals(2500, accounts.peek());
+    }
 
 }
