@@ -7,6 +7,7 @@ import com.bank.Savings;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AccountTests {
 
     private Account account;
-    private Queue<Account> accounts = new LinkedList<>();
+    private Queue<Account> accounts = new PriorityQueue<>();
 
     @Test
     public void computeChecking_validate10Periods5Interest() {
