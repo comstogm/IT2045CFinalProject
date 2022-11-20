@@ -1,7 +1,7 @@
-# Assignment1_2045 README 
-Author: Wesley Ryther \
+# Final Project README 
+Author: Wesley Ryther, Gabriel Comstock, and Sean Arthur \
 Program: Banking \
-Description: Program can create 3 different bank account types, prompt the banker for the beginning balance, interest rate, and time period, and calculate the total balance after the specified period.
+Description: Program can create 3 different bank account types from UI or JSON file, calculate the total balance after the specified period, and make withdrawals.
 
 ### Java Super Class
 - Account
@@ -53,4 +53,4 @@ Description: Program can create 3 different bank account types, prompt the banke
 
 ## Diagram
 
-![Vehicles Class Diagram](https://github.com/uc-soit/2045-individual-assignment-1-wrytherUC/blob/master/IT2045CFinalProject.drawio.png)
+![Vehicles Class Diagram](https://github.com/comstogm/IT2045CFinalProject/blob/master/IT2045CFinalProject.drawio.png)
