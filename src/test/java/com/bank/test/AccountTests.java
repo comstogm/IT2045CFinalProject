@@ -84,7 +84,7 @@ public class AccountTests {
     private void givenAccountWithInterestTwoPercentAndBalanceOf4000() {
         Account account2 = new Account();
         account.setInterest(2);
-        account.setBalance(3000);
+        account.setBalance(4000);
         accounts.offer(account2)
     }
 
@@ -98,11 +98,12 @@ public class AccountTests {
     }
 
     /*
-    Then account with the lowest interest will have money taken out of the account
+    Then account with the lowest interest will have money taken out of the account.
+    Account with the lowest interest rate should be the first element in the priority queue
      */
 
     private void thenAccount2BalanceDecreasesBy500() {
-        assertEquals(2500, accounts.peek());
+        assertEquals(3500, accounts.peek().getBalance());
     }
 
 }
