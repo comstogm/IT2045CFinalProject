@@ -25,6 +25,9 @@ public class BankerForm {
     private JTextField txtPeriods;
     private JLabel lblMaturity;
     private JTextField txtMaturity;
+    private JLabel lblWithdrawal;
+    private JTextField txtWithdrawal;
+    private JButton btnWithdraw;
     private Vector<Account> allAccounts = new Vector<>();
 
     public BankerForm() {
@@ -108,6 +111,12 @@ public class BankerForm {
                     txtMaturity.setEnabled(false);
                 }
 
+            }
+        });
+        btnWithdraw.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
             }
         });
     }
