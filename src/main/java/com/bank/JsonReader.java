@@ -36,16 +36,29 @@ public class JsonReader {
         JSONObject jsonAccount = (JSONObject) newReadAccount.get("properties");
 
         String accountType = (String) newReadAccount.get("type");
+        if (accountType.equals("CertificateOfDeposit")) {
+            accountType = "Certificate of Deposit";
+        }
         Double balance = (Double) jsonAccount.get("balance");
         Double interest = (Double) jsonAccount.get("interest");
         Long lPeriods = (long) jsonAccount.get("periods");
         Integer periods = lPeriods.intValue();
+        Integer maturity = null;
+        if (accountType.equals("Certificate of Deposit")) {
+            Long lMaturity = (long) jsonAccount.get("maturity");
+            maturity = lMaturity.intValue();
+        }
 
         //Creates a new object of type specified in Json file and assigns values to it
         Account account = Banker.getInstance().createAccount(accountType);
         account.setBalance(balance);
         account.setInterest(interest);
         account.setPeriods(periods);
+
+        if (account instanceof CertificateOfDeposit) {
+            ((CertificateOfDeposit) account).setMaturity(maturity);
+        }
+
 
         //adds new object to the readAccounts vector
         readAccounts.add(account);
