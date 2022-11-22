@@ -6,6 +6,8 @@ public class Account implements Comparable<Account> {
     public int periods;
     public int accountNumber;
 
+
+
     public double getBalance() {
         return balance;
     }
@@ -33,6 +35,7 @@ public class Account implements Comparable<Account> {
         this.accountNumber = accountNumber;
     }
 
+
     /**
      * calculates balance total, adding interest to the total balance
      */
@@ -42,11 +45,17 @@ public class Account implements Comparable<Account> {
         }
     }
 
+    // Put this here, so I can set and get balance.
+    // If you guys know how this can be put in BankerForm let me know
+    public void withdraw(double amountWithdrawn) {
+        double amountTaken = amountWithdrawn;
+        setBalance(getBalance() - amountTaken);
+    }
+
     @Override
     public String toString() {
         return " Balance " + getBalance() + " Interest " + getInterest() + " Periods " + getPeriods();
     }
-
 
     @Override
     public int compareTo(Account o) {

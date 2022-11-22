@@ -3,6 +3,7 @@ package com.bank;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Vector;
@@ -119,12 +120,22 @@ public class BankerForm {
         btnWithdraw.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String strWithdraw = txtWithdrawal.getText();
+                double withdrawal = Double.parseDouble(strWithdraw);
+
+                allAccounts.stream().min(Account::compareTo).filter(account -> account.getBalance() == 0)
+                        .stream().forEach(account -> {account.withdraw(withdrawal);});
+                lstAccounts.updateUI();
+
 
             }
         });
     }
-
+    // I can't get set from here and I can't come up with a way to do so
+    //  If you guys know how to please let me know. withdraw is currently in Accounts
     public static void withdraw(int i) {
+
+
     }
 
     /**
