@@ -3,6 +3,8 @@ package com.bank;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Vector;
 
 
@@ -28,7 +30,8 @@ public class BankerForm {
     private JLabel lblWithdrawal;
     private JTextField txtWithdrawal;
     private JButton btnWithdraw;
-    private Vector<Account> allAccounts = new Vector<>();
+    private static Queue<Account> allAccounts = new PriorityQueue<>();
+
 
     public BankerForm() {
         
@@ -43,7 +46,7 @@ public class BankerForm {
         Vector<Account> readAccounts = JsonReader.fetchAccounts();
         allAccounts.addAll(readAccounts);
 
-        lstAccounts.setListData(allAccounts);
+        lstAccounts.setListData(allAccounts.toArray());
 
         /**
          * Listens for user to click save button

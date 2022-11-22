@@ -1,6 +1,6 @@
 package com.bank;
 
-public class Account {
+public class Account implements Comparable<Account> {
     public double balance;
     public double interest;
     public int periods;
@@ -48,4 +48,10 @@ public class Account {
     }
 
 
+    @Override
+    public int compareTo(Account o) {
+        int ourPriority = (int)getInterest();
+        int theirPriority = (int)o.getInterest();
+        return ourPriority - theirPriority;
+    }
 }
