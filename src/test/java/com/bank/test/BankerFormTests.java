@@ -1,6 +1,7 @@
 package com.bank.test;
 
 import com.bank.Account;
+import com.bank.BankerForm;
 import org.junit.jupiter.api.Test;
 
 import java.util.PriorityQueue;
@@ -52,7 +53,7 @@ public class BankerFormTests {
 
     @Test
     private void whenWithdraw500() {
-        withdraw(500);
+        BankerForm.withdraw(500);
     }
 
     /*

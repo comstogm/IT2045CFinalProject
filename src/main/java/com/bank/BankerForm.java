@@ -124,6 +124,9 @@ public class BankerForm {
         });
     }
 
+    public static void withdraw(int i) {
+    }
+
     /**
      * populates the combobox with options for account type
      */
