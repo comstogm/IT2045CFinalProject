@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class BankerFormTests {
 
     private Account account;
-    private Queue<Account> accounts = new PriorityQueue<>();
+    private Queue<Account> allaccounts = new PriorityQueue<>();
 
     /*
     Allow the user to make a withdrawal from accounts,
@@ -35,7 +35,7 @@ public class BankerFormTests {
         Account account1 = new Account();
         account.setInterest(.03);
         account.setBalance(5000);
-        accounts.offer(account1)
+        allaccounts.offer(account1);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class BankerFormTests {
         Account account2 = new Account();
         account.setInterest(2);
         account.setBalance(4000);
-        accounts.offer(account2)
+        allaccounts.offer(account2);
     }
 
     /*
@@ -52,7 +52,7 @@ public class BankerFormTests {
 
     @Test
     private void whenWithdraw500() {
-        accounts.withdraw(500);
+        withdraw(500);
     }
 
     /*
@@ -62,6 +62,6 @@ public class BankerFormTests {
 
     private void thenAccount2BalanceDecreasesBy500() {
         //assertEquals("account2", accounts.peek());
-        assertEquals(3500, accounts.peek().getBalance());
+        assertEquals(3500, allaccounts.peek().getBalance());
     }
 }
