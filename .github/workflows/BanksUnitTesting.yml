@@ -9,11 +9,11 @@ jobs:
     steps:
       # Downloads a copy of your repository on the runner
     - uses: actions/checkout@v3
-      # Configures runner for Java 11 JDK
-    - name: Set up JDK 11
+      # Configures runner for Java 17 JDK
+    - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
-        java-version: '11'
+        java-version: '17'
         distribution: 'temurin'
         cache: maven
       # Runs unit tests
