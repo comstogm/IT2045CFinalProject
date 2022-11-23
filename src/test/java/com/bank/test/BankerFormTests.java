@@ -32,27 +32,25 @@ public class BankerFormTests {
         thenAccount2BalanceDecreasesBy500();
     }
 
-    @Test
+
     public void givenAccountWithInterestPoint03PercentAndBalanceOf5000() {
         Account testaccount1 = new Account();
         testaccount1.setInterest(.03);
         testaccount1.setBalance(5000);
-        BankerForm.allAccounts.offer(testaccount1);
+        BankerForm.allAccounts.add(testaccount1);
     }
 
-    @Test
     public void givenAccountWithInterestTwoPercentAndBalanceOf4000() {
         Account testaccount2 = new Account();
         testaccount2.setInterest(2);
         testaccount2.setBalance(4000);
-        BankerForm.allAccounts.offer(testaccount2);
+        BankerForm.allAccounts.add(testaccount2);
     }
 
     /*
     When withdraw this amount of money
      */
 
-    @Test
     public void whenWithdraw500() {
         BankerForm.withdraw(500.0);
     }
@@ -61,7 +59,6 @@ public class BankerFormTests {
     Then account with the lowest interest will have money taken out of the account.
     Account with the lowest interest rate should be the first element in the priority queue
      */
-    @Test
     public void thenAccount2BalanceDecreasesBy500() {
         //assertEquals("account2", accounts.peek());
         assertEquals(4500, BankerForm.allAccounts.peek().getBalance());
