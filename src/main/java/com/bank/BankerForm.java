@@ -31,7 +31,7 @@ public class BankerForm {
     private JLabel lblWithdrawal;
     private JTextField txtWithdrawal;
     private JButton btnWithdraw;
-    private static Queue<Account> allAccounts = new PriorityQueue<>();
+    public static Queue<Account> allAccounts = new PriorityQueue<>();
 
 
     public BankerForm() {
