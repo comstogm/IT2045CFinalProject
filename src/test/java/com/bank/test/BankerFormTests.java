@@ -3,7 +3,6 @@ package com.bank.test;
 import com.bank.Account;
 import com.bank.BankerForm;
 import org.junit.jupiter.api.Test;
-
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -12,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class BankerFormTests {
 
     private Account account;
-    private Queue<Account> allaccounts = new PriorityQueue<>();
+    private static Queue<Account> allAccounts = new PriorityQueue<>();
 
     /*
     Allow the user to make a withdrawal from accounts,
@@ -31,20 +30,27 @@ public class BankerFormTests {
     Given two accounts and place them in priority queue
      */
 
-    @Test
-    private void givenAccountWithInterestPoint03PercentAndBalanceOf5000() {
-        Account account1 = new Account();
-        account.setInterest(.03);
-        account.setBalance(5000);
-        allaccounts.offer(account1);
+    public void withdraw_decreaseAccountWithLowestRateBy500() {
+        givenAccountWithInterestPoint03PercentAndBalanceOf5000();
+        givenAccountWithInterestTwoPercentAndBalanceOf4000();
+        whenWithdraw500();
+        thenAccount2BalanceDecreasesBy500();
     }
 
     @Test
-    private void givenAccountWithInterestTwoPercentAndBalanceOf4000() {
+    public void givenAccountWithInterestPoint03PercentAndBalanceOf5000() {
+        Account account1 = new Account();
+        account.setInterest(.03);
+        account.setBalance(5000);
+        allAccounts.offer(account1);
+    }
+
+    @Test
+    public void givenAccountWithInterestTwoPercentAndBalanceOf4000() {
         Account account2 = new Account();
         account.setInterest(2);
         account.setBalance(4000);
-        allaccounts.offer(account2);
+        allAccounts.offer(account2);
     }
 
     /*
@@ -52,7 +58,7 @@ public class BankerFormTests {
      */
 
     @Test
-    private void whenWithdraw500() {
+    public void whenWithdraw500() {
         BankerForm.withdraw(500);
     }
 
@@ -61,8 +67,8 @@ public class BankerFormTests {
     Account with the lowest interest rate should be the first element in the priority queue
      */
 
-    private void thenAccount2BalanceDecreasesBy500() {
+    public void thenAccount2BalanceDecreasesBy500() {
         //assertEquals("account2", accounts.peek());
-        assertEquals(3500, allaccounts.peek().getBalance());
+        assertEquals(3500, allAccounts.peek().getBalance());
     }
 }
