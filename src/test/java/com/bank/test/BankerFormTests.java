@@ -10,8 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BankerFormTests {
 
-    private Account account;
-
     /*
     Allow the user to make a withdrawal from accounts,
         and automatically pick the account that pays the lowest interest rate to deduct the money withdrawn.
