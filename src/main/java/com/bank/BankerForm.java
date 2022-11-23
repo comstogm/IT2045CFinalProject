@@ -40,19 +40,19 @@ public class BankerForm {
 
         JsonReader.readAccounts();
 
-        /**
-         * Creates a new vector from the vector provided by JsonReader.fetchAccounts
-         * Then adds that vector to the allAccounts vector that is modified by this form
+        /*
+          Creates a new vector from the vector provided by JsonReader.fetchAccounts
+          Then adds that vector to the allAccounts vector that is modified by this form
          */
         Vector<Account> readAccounts = JsonReader.fetchAccounts();
         allAccounts.addAll(readAccounts);
 
         lstAccounts.setListData(allAccounts.toArray());
 
-        /**
-         * Listens for user to click save button
-         * Reads data user entered into form and calls methods from Banker to create a new account
-         * if certificate of deposit account type, enables maturity field
+        /*
+          Listens for user to click save button
+          Reads data user entered into form and calls methods from Banker to create a new account
+          if certificate of deposit account type, enables maturity field
          */
         btnSave.addActionListener(new ActionListener() {
             @Override
@@ -88,9 +88,9 @@ public class BankerForm {
             }
         });
 
-        /**
-         * Listens for user pressing calculate button
-         * loops through each object created and updates the form
+        /*
+          Listens for user pressing calculate button
+          loops through each object created and updates the form
          */
         btnCalc.addActionListener(new ActionListener() {
             @Override
@@ -101,8 +101,8 @@ public class BankerForm {
             }
         });
 
-        /**
-         * When changing the combobox to Certificate of Deposit, enables the maturity field
+        /*
+          When changing the combobox to Certificate of Deposit, enables the maturity field
          */
         cmbAccountType.addActionListener(new ActionListener() {
             @Override
@@ -121,24 +121,40 @@ public class BankerForm {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String strWithdraw = txtWithdrawal.getText();
-                double withdrawal = Double.parseDouble(strWithdraw);
+                double withdrawAmount = Double.parseDouble(strWithdraw);
+//
+//                allAccounts.stream().min(Account::compareTo).filter(account -> account.getBalance() == 0)
+//                        .stream().forEach(account -> {account.withdraw(withdrawal);});
+//                lstAccounts.updateUI();
 
-                allAccounts.stream().min(Account::compareTo).filter(account -> account.getBalance() == 0)
-                        .stream().forEach(account -> {account.withdraw(withdrawal);});
+                //What I would do
+                BankerForm.withdraw(withdrawAmount);
+                lstAccounts.setListData(allAccounts.toArray());
                 lstAccounts.updateUI();
-
-
             }
         });
     }
     // I can't get set from here and I can't come up with a way to do so
     //  If you guys know how to please let me know. withdraw is currently in Accounts
-    public static void withdraw(int i) {
-
-
+    public static void withdraw(double amount) {
+        double withdrawalAmount = amount;
+        do {
+            Account account = allAccounts.peek();
+            double accountBalance = account.getBalance();
+            if (accountBalance == withdrawalAmount) {
+                allAccounts.remove();
+                withdrawalAmount = 0;
+            } else if (withdrawalAmount < accountBalance) {
+                account.setBalance(accountBalance - amount);
+                withdrawalAmount = 0;
+            } else if (withdrawalAmount > accountBalance) {
+                withdrawalAmount -= accountBalance;
+                allAccounts.remove();
+            }
+        } while (withdrawalAmount > 0);
     }
 
-    /**
+    /*
      * populates the combobox with options for account type
      */
     private void initializeAccountTypeComboBox() {
