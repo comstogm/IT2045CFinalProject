@@ -49,7 +49,9 @@ public class Banker {
 
     /**
      * prompts user to create a certain account type
+     *  an account is then created with the input using the accountFactory class
      * prompts user to fill in information regarding account
+     *  Use settrs to set attribute values
      * if certificate of deposit account type, prompts for maturity
      */
     public void promptUser() {
@@ -59,7 +61,7 @@ public class Banker {
             Object accountType = JOptionPane.showInputDialog(null,
                     "Choose an Account to create", "Choose an Account",
                     JOptionPane.QUESTION_MESSAGE, null, availableAccounts, SAVINGS);
-            Account account = createAccount(accountType);
+            Account account = com.bank.accountFactory.createAccountCommand(accountType.toString());
 
             String strBalance = JOptionPane.showInputDialog("Enter opening balance");
             double balance = Double.parseDouble(strBalance);
@@ -100,9 +102,11 @@ public class Banker {
     }
 
     /**
+     * Old way of creating an account before setting up a factory method
      * @param selectedAccount type of account selected by user in promptUser()
      * @return returns the newly created account of specified type
      */
+    /*
     public Account createAccount(final Object selectedAccount) {
         Account account = new Account();
         if (selectedAccount.toString().equals(SAVINGS)) {
@@ -114,4 +118,5 @@ public class Banker {
         }
         return account;
     }
+     */
 }
