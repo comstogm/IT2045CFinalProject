@@ -1,20 +1,10 @@
 [
   {
-    "account": {
-      "accountType": "Checking",
-      "balance": "5000",
-      "interest": "1",
-      "periods": "3",
-      "accountNumber": "123456"
-    }
-  },
-  {
-    "account": {
-      "accountType": "Savings",
-      "balance": "2000",
-      "interest": "2",
-      "periods": "2",
-      "accountNumber": "132546"
+    "type":"Checking",
+    "properties": {
+      "interest":5.0,
+      "balance":10000.0,
+      "periods":10
     }
   }
 ]
