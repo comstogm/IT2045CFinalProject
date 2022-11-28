@@ -43,14 +43,14 @@ public class JsonReader {
 
         String accountType = (String) newReadAccount.get("type");
         if (accountType.equals("CertificateOfDeposit")) {
-            accountType = "Certificate of Deposit";
+            accountType = "CertificateOfDeposit";
         }
         Double balance = (Double) jsonAccount.get("balance");
         Double interest = (Double) jsonAccount.get("interest");
         Long lPeriods = (long) jsonAccount.get("periods");
         Integer periods = lPeriods.intValue();
         Integer maturity = null;
-        if (accountType.equals("Certificate of Deposit")) {
+        if (accountType.equals("CertificateOfDeposit")) {
             Long lMaturity = (long) jsonAccount.get("maturity");
             maturity = lMaturity.intValue();
         }
