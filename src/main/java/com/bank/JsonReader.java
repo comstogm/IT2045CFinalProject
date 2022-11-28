@@ -21,8 +21,14 @@ public class JsonReader {
 
             JSONArray accountList = (JSONArray) obj;
 
-            accountList.forEach( newReadAccount -> parseAccountObject((JSONObject) newReadAccount));
-
+            //Temp fix for parseAccountObject exception issue caused by adding factory method
+            accountList.forEach( newReadAccount -> {
+                try {
+                    parseAccountObject((JSONObject) newReadAccount);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
 
         } catch (IOException e) {
             throw new RuntimeException(e);
