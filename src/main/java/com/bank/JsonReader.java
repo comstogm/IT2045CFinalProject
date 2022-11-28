@@ -31,7 +31,7 @@ public class JsonReader {
         }
     }
 
-    public static void parseAccountObject (JSONObject newReadAccount) {
+    public static void parseAccountObject (JSONObject newReadAccount) throws Exception {
         //gets the object from the JSON file and converts to correct format
         JSONObject jsonAccount = (JSONObject) newReadAccount.get("properties");
 
@@ -50,7 +50,7 @@ public class JsonReader {
         }
 
         //Creates a new object of type specified in Json file and assigns values to it
-        Account account = Banker.getInstance().createAccount(accountType);
+        Account account = com.bank.accountFactory.createAccountCommand(accountType.toString());
         account.setBalance(balance);
         account.setInterest(interest);
         account.setPeriods(periods);
