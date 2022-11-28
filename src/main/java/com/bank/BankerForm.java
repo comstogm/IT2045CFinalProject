@@ -95,7 +95,8 @@ public class BankerForm {
                     }
                 }
                 allAccounts.add(account);
-                lstAccounts.updateUI();
+                //lstAccounts.updateUI(); .updateUI() not showing new accounts?
+                lstAccounts.setListData(allAccounts.toArray()); //resetting ListData to show new account
             }
         });
 

@@ -1,5 +1,7 @@
 package com.bank;
 
+import java.text.DecimalFormat;
+
 public class Account implements Comparable<Account> {
     public double balance;
     public double interest;
@@ -36,6 +38,7 @@ public class Account implements Comparable<Account> {
     }
 
 
+    public static DecimalFormat df = new DecimalFormat("###.##");
     /**
      * calculates balance total, adding interest to the total balance
      */
@@ -54,7 +57,8 @@ public class Account implements Comparable<Account> {
 
     @Override
     public String toString() {
-        return " Balance " + getBalance() + " Interest " + getInterest() + " Periods " + getPeriods();
+        return " Balance " + df.format(getBalance()) + " Interest " + df.format(getInterest()) + " Periods " +
+                df.format(getPeriods());
     }
 
     @Override
