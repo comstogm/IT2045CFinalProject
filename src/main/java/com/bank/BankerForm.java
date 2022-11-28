@@ -35,6 +35,7 @@ public class BankerForm {
     private JTextField txtWithdrawal;
     private JButton btnWithdraw;
     private static final Logger logger = LogManager.getLogger("accountForm");
+    final String FILE = "accounts.json";
     public static Queue<Account> allAccounts = new PriorityQueue<>();
 
 
@@ -42,7 +43,7 @@ public class BankerForm {
         
         initializeAccountTypeComboBox();
 
-        JsonReader.readAccounts();
+        JsonReader.readAccounts(FILE);
 
         /*
           Creates a new vector from the vector provided by JsonReader.fetchAccounts

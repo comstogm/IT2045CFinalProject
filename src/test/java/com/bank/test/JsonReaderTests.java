@@ -8,10 +8,11 @@ import static com.bank.JsonReader.readAccounts;
 
 public class JsonReaderTests {
 
+    final String FILE = "testAccounts.json";
+
     //Given json test file, read file
-    @Test
     private void givenJsonTestAccountFile() {
-        readAccounts();
+        readAccounts(FILE);
     }
 
     @Test
