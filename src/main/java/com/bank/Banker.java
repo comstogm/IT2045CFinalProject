@@ -54,7 +54,7 @@ public class Banker {
      *  Use settrs to set attribute values
      * if certificate of deposit account type, prompts for maturity
      */
-    public void promptUser() {
+    public void promptUser() throws Exception {
         int goAgain = JOptionPane.NO_OPTION;
         do {
             String[] availableAccounts = {SAVINGS, CHECKING, CERTIFICATEOFDEPOSIT};
