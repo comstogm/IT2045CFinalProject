@@ -12,10 +12,10 @@ import java.util.Vector;
 public class JsonReader {
     private static Vector<Account> readAccounts = new Vector<>();
 
-    public static void readAccounts() {
+    public static void readAccounts(String file) {
         //Using org.json.simple.parser to read from the JSON file
         JSONParser parser = new JSONParser();
-        try (FileReader reader = new FileReader("accounts.json"))
+        try (FileReader reader = new FileReader(file))
         {
             Object obj = parser.parse(reader);
 
