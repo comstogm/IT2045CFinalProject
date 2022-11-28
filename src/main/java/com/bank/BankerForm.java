@@ -46,11 +46,9 @@ public class BankerForm {
         JsonReader.readAccounts(FILE);
 
         /*
-          Creates a new vector from the vector provided by JsonReader.fetchAccounts
-          Then adds that vector to the allAccounts vector that is modified by this form
+          JsonReader.fetchAccounts adds the returned vector to the allAccounts priorityQueue
          */
-        Vector<Account> readAccounts = JsonReader.fetchAccounts();
-        allAccounts.addAll(readAccounts);
+        allAccounts.addAll(JsonReader.fetchAccounts());
 
         lstAccounts.setListData(allAccounts.toArray());
 
@@ -108,8 +106,8 @@ public class BankerForm {
             @Override
             public void actionPerformed(ActionEvent e) {
                 allAccounts.stream().forEach(account -> {account.compute();});
-                lstAccounts.updateUI();
-
+                //lstAccounts.updateUI();
+                lstAccounts.setListData(allAccounts.toArray());
             }
         });
 
@@ -132,39 +130,36 @@ public class BankerForm {
         btnWithdraw.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Account withdrawAccount = allAccounts.peek();
                 String strWithdraw = txtWithdrawal.getText();
-                double withdrawAmount = Double.parseDouble(strWithdraw);
-//
-//                allAccounts.stream().min(Account::compareTo).filter(account -> account.getBalance() == 0)
-//                        .stream().forEach(account -> {account.withdraw(withdrawal);});
-//                lstAccounts.updateUI();
-
-                //What I would do
-                BankerForm.withdraw(withdrawAmount);
+                double withdraw = Double.parseDouble(strWithdraw);
+                double currentBalance = withdrawAccount.getBalance();
+                boolean done = true;
+                do {
+                    if (withdraw < currentBalance){
+                        withdrawAccount.setBalance(currentBalance - withdraw);
+                        lstAccounts.setListData(allAccounts.toArray());
+                        done = true;
+                    }
+                    else if (withdraw == currentBalance) {
+                        Account removeAccount = allAccounts.poll();
+                        done = true;
+                    }
+                    else if (withdraw > currentBalance) {
+                        withdraw = withdraw - currentBalance;
+                        Account removeAccount = allAccounts.poll();
+                        withdrawAccount = allAccounts.peek();
+                        currentBalance = withdrawAccount.getBalance();
+                        done = false;
+                    }
+                }
+                while (!done);
+                //lstAccounts.updateUI();
                 lstAccounts.setListData(allAccounts.toArray());
-                lstAccounts.updateUI();
             }
         });
     }
-    // I can't get set from here and I can't come up with a way to do so
-    //  If you guys know how to please let me know. withdraw is currently in Accounts
-    public static void withdraw(double amount) {
-        double withdrawalAmount = amount;
-        do {
-            Account account = allAccounts.peek();
-            double accountBalance = account.getBalance();
-            if (accountBalance == withdrawalAmount) {
-                allAccounts.remove();
-                withdrawalAmount = 0;
-            } else if (withdrawalAmount < accountBalance) {
-                account.setBalance(accountBalance - amount);
-                withdrawalAmount = 0;
-            } else if (withdrawalAmount > accountBalance) {
-                withdrawalAmount -= accountBalance;
-                allAccounts.remove();
-            }
-        } while (withdrawalAmount > 0);
-    }
+
 
     /*
      * populates the combobox with options for account type
