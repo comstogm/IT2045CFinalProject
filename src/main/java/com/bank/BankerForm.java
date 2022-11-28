@@ -1,5 +1,8 @@
 package com.bank;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,6 +34,7 @@ public class BankerForm {
     private JLabel lblWithdrawal;
     private JTextField txtWithdrawal;
     private JButton btnWithdraw;
+    private static final Logger logger = LogManager.getLogger("accountForm");
     public static Queue<Account> allAccounts = new PriorityQueue<>();
 
 
@@ -71,6 +75,7 @@ public class BankerForm {
                 try {
                     account = accountFactory.createAccountCommand(type.toString());
                 } catch (Exception ex) {
+                    logger.error(ex.getMessage());
                     throw new RuntimeException(ex);
                 }
 
