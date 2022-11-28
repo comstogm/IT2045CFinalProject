@@ -130,34 +130,39 @@ public class BankerForm {
         btnWithdraw.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Account withdrawAccount = allAccounts.peek();
                 String strWithdraw = txtWithdrawal.getText();
                 double withdraw = Double.parseDouble(strWithdraw);
-                double currentBalance = withdrawAccount.getBalance();
-                boolean done = true;
-                do {
-                    if (withdraw < currentBalance){
-                        withdrawAccount.setBalance(currentBalance - withdraw);
-                        lstAccounts.setListData(allAccounts.toArray());
-                        done = true;
-                    }
-                    else if (withdraw == currentBalance) {
-                        Account removeAccount = allAccounts.poll();
-                        done = true;
-                    }
-                    else if (withdraw > currentBalance) {
-                        withdraw = withdraw - currentBalance;
-                        Account removeAccount = allAccounts.poll();
-                        withdrawAccount = allAccounts.peek();
-                        currentBalance = withdrawAccount.getBalance();
-                        done = false;
-                    }
-                }
-                while (!done);
-                //lstAccounts.updateUI();
+                withdraw(withdraw);
                 lstAccounts.setListData(allAccounts.toArray());
             }
         });
+    }
+    public static void withdraw(double withdraw) {
+        Account withdrawAccount = allAccounts.peek();
+
+        double currentBalance = withdrawAccount.getBalance();
+        boolean done = true;
+        do {
+            if (withdraw < currentBalance){
+                withdrawAccount.setBalance(currentBalance - withdraw);
+                done = true;
+            }
+            else if (withdraw == currentBalance) {
+                Account removeAccount = allAccounts.poll();
+                done = true;
+            }
+            else if (withdraw > currentBalance) {
+                withdraw = withdraw - currentBalance;
+                Account removeAccount = allAccounts.poll();
+                withdrawAccount = allAccounts.peek();
+                currentBalance = withdrawAccount.getBalance();
+                done = false;
+            }
+        }
+        while (!done);
+        //lstAccounts.updateUI();
+
+
     }
 
 
