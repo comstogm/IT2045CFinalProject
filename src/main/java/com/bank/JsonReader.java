@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 public class JsonReader {
-    private static Vector<Account> readAccounts = new Vector<>();
+    public static Vector<Account> readAccounts = new Vector<>();
 
     public static void readAccounts(String file) {
         //Using org.json.simple.parser to read from the JSON file
