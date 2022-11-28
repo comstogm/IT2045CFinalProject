@@ -13,7 +13,7 @@ public class Banker {
     private Banker() {
 
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         banker.getInstance();
         banker.promptUser();
         banker.displayBalance();
