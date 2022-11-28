@@ -61,6 +61,7 @@ public class JsonReader {
         account.setInterest(interest);
         account.setPeriods(periods);
 
+
         if (account instanceof CertificateOfDeposit) {
             ((CertificateOfDeposit) account).setMaturity(maturity);
         }

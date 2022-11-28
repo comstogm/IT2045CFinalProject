@@ -69,6 +69,9 @@ public class BankerForm {
                 String strPeriods = txtPeriods.getText();
                 int periods = Integer.parseInt(strPeriods);
 
+                String strTotalInterest = "0";
+                double totalInterest = Double.parseDouble(strTotalInterest);
+
                 String type = cmbAccountType.getSelectedItem().toString();
                 Account account = null;
                 try {
@@ -81,6 +84,7 @@ public class BankerForm {
                 account.setBalance(balance);
                 account.setInterest(interest);
                 account.setPeriods(periods);
+                account.setTotalInterest(totalInterest);
 
                 if (cmbAccountType.getSelectedItem().toString().equals(Banker.CERTIFICATEOFDEPOSIT)) {
                     if (account instanceof CertificateOfDeposit) {
@@ -108,6 +112,7 @@ public class BankerForm {
                 allAccounts.stream().forEach(account -> {account.compute();});
                 //lstAccounts.updateUI();
                 lstAccounts.setListData(allAccounts.toArray());
+
             }
         });
 
