@@ -67,7 +67,12 @@ public class BankerForm {
                 int periods = Integer.parseInt(strPeriods);
 
                 String type = cmbAccountType.getSelectedItem().toString();
-                Account account = Banker.getInstance().createAccount(type);
+                Account account = null;
+                try {
+                    account = accountFactory.createAccountCommand(type.toString());
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
 
                 account.setBalance(balance);
                 account.setInterest(interest);
