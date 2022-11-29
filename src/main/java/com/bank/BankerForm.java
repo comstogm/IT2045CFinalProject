@@ -6,7 +6,6 @@ import org.apache.logging.log4j.Logger;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Vector;
@@ -34,6 +33,8 @@ public class BankerForm {
     private JLabel lblWithdrawal;
     private JTextField txtWithdrawal;
     private JButton btnWithdraw;
+    private JLabel lbAccountNumber;
+    private JTextField txtAccountNumber;
     private static final Logger logger = LogManager.getLogger("accountForm");
     final String FILE = "accounts.json";
     public static Queue<Account> allAccounts = new PriorityQueue<>();
