@@ -117,6 +117,7 @@ public class BankerForm {
                 readAccounts.add(account);
                 readAccounts.sort(Account::compareTo);
                 lstAccounts.updateUI();
+                clearFields();
                 //lstAccounts.setListData(allAccounts.toArray()); //resetting ListData to show new account
             }
         });
@@ -157,7 +158,8 @@ public class BankerForm {
                 String strWithdraw = txtWithdrawal.getText();
                 double withdraw = Double.parseDouble(strWithdraw);
                 withdraw(withdraw);
-                lstAccounts.setListData(allAccounts.toArray());
+                lstAccounts.updateUI();
+                clearFields();
             }
         });
     }
@@ -184,9 +186,6 @@ public class BankerForm {
             }
         }
         while (!done);
-        //lstAccounts.updateUI();
-
-
     }
 
 
@@ -199,6 +198,15 @@ public class BankerForm {
         accountTypesModel.addElement(Banker.CHECKING);
         accountTypesModel.addElement(Banker.CERTIFICATEOFDEPOSIT);
         cmbAccountType.setModel(accountTypesModel);
+    }
+
+    private void clearFields() {
+        txtAccountNumber.setText("");
+        txtBalance.setText("");
+        txtMaturity.setText("");
+        txtInterest.setText("");
+        txtWithdrawal.setText("");
+        txtPeriods.setText("");
     }
 
     public static void main(String[] args) {
