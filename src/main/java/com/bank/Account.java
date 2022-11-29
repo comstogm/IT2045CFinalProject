@@ -62,7 +62,7 @@ public class Account implements Comparable<Account> {
 
     @Override
     public String toString() {
-        return " Balance " + df.format(getBalance()) + " Interest " + df.format(getInterest()) + " Periods " +
+        return " Account Number " + df.format(getAccountNumber()) + " Balance " + df.format(getBalance()) + " Interest " + df.format(getInterest()) + " Periods " +
                 df.format(getPeriods()) + " Total Interest " + df.format(getTotalInterest());
     }
 
