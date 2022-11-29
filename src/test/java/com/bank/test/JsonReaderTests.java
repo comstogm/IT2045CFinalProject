@@ -27,6 +27,7 @@ public class JsonReaderTests {
         assertEquals(5.0, readAccounts.get(0).getInterest());
         assertEquals(10000.0, readAccounts.get(0).getBalance());
         assertEquals(10, readAccounts.get(0).getPeriods());
+        assertEquals(123455, readAccounts.get(0).getAccountNumber());
     }
 
 }
