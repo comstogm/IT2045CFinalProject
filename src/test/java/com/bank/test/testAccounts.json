@@ -4,7 +4,8 @@
     "properties": {
       "interest":5.0,
       "balance":10000.0,
-      "periods":10
+      "periods":10,
+      "accountNumber":123455
     }
   }
 ]

@@ -1,18 +1,18 @@
 [
   {
     "type":"Checking","properties":
-  {"interest":5.0,"balance":10000.0,"periods":10}
+  {"interest":5.0,"balance":10000.0,"periods":10,"accountNumber":123456}
   },
   {
     "type":"Savings","properties":
-  {"interest":5.0,"balance":10000.0,"periods":10}
+  {"interest":5.0,"balance":10000.0,"periods":10,"accountNumber":123457}
   },
   {
     "type":"CertificateOfDeposit","properties":
-  {"maturity":12,"interest":5.0,"balance":10000.0,"periods":10}
+  {"maturity":12,"interest":5.0,"balance":10000.0,"periods":10,"accountNumber":123458}
   },
   {
     "type":"Checking","properties":
-  {"interest":10.0,"balance":20000.0,"periods":5}
+  {"interest":10.0,"balance":20000.0,"periods":5,"accountNumber":123456}
   }
 ]
