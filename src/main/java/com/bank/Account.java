@@ -1,8 +1,11 @@
 package com.bank;
 
+import java.text.DecimalFormat;
+
 public class Account implements Comparable<Account> {
     public double balance;
     public double interest;
+    public double totalInterest;
     public int periods;
     public int accountNumber;
 
@@ -34,14 +37,19 @@ public class Account implements Comparable<Account> {
     public void setAccountNumber(int accountNumber) {
         this.accountNumber = accountNumber;
     }
+    public double getTotalInterest() {return totalInterest;}
+    public void setTotalInterest(double totalInterest) {this.totalInterest = totalInterest;}
 
 
+    public static DecimalFormat df = new DecimalFormat("###.##");
     /**
      * calculates balance total, adding interest to the total balance
      */
     public void compute() {
         for (int i = 0; i < getPeriods(); i++) {
-            setBalance(getBalance() + (getBalance() * (getInterest() / 100)));
+            double addedBalance = getBalance() * (getInterest() / 100);
+            setBalance(getBalance() + addedBalance);
+            setTotalInterest(getTotalInterest() + addedBalance);
         }
     }
 
@@ -54,7 +62,8 @@ public class Account implements Comparable<Account> {
 
     @Override
     public String toString() {
-        return " Balance " + getBalance() + " Interest " + getInterest() + " Periods " + getPeriods();
+        return " Balance " + df.format(getBalance()) + " Interest " + df.format(getInterest()) + " Periods " +
+                df.format(getPeriods()) + " Total Interest " + df.format(getTotalInterest());
     }
 
     @Override

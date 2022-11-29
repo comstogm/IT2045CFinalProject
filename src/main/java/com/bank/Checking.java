@@ -8,11 +8,9 @@ public class Checking extends Account {
      */
     public void compute() {
         for (int i = 0; i < getPeriods(); i++) {
-            setBalance(
-                    (getBalance() +
-                            (getBalance() * (getInterest() / 100))
-                    ) - FEE
-            ); // I thought this was easier to read.
+            double addedBalance = getBalance() * (getInterest() / 100);
+            setBalance((getBalance() + addedBalance) - FEE);
+            setTotalInterest(getTotalInterest() + addedBalance); // I thought this was easier to read.
         }
     }
 }
