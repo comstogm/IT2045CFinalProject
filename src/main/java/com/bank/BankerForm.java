@@ -51,7 +51,13 @@ public class BankerForm {
          */
         allAccounts.addAll(JsonReader.fetchAccounts());
 
-        lstAccounts.setListData(allAccounts.toArray());
+        /*
+           The next two lines set the vector that will be used.
+           Updated the code to use a vector so that the UI would show an ordered list
+            based off of interest rates
+         */
+        Vector<Account> readAccounts = JsonReader.fetchAccounts();
+        lstAccounts.setListData(readAccounts);
 
         /*
           Listens for user to click save button
@@ -98,8 +104,10 @@ public class BankerForm {
                     }
                 }
                 allAccounts.add(account);
-                //lstAccounts.updateUI(); .updateUI() not showing new accounts?
-                lstAccounts.setListData(allAccounts.toArray()); //resetting ListData to show new account
+                readAccounts.add(account);
+                readAccounts.sort(Account::compareTo);
+                lstAccounts.updateUI();
+                //lstAccounts.setListData(allAccounts.toArray()); //resetting ListData to show new account
             }
         });
 
