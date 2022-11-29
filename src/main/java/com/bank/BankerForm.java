@@ -6,9 +6,7 @@ import org.apache.logging.log4j.Logger;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Vector;
+import java.util.*;
 
 
 public class BankerForm {
@@ -38,6 +36,7 @@ public class BankerForm {
     private static final Logger logger = LogManager.getLogger("accountForm");
     final String FILE = "accounts.json";
     public static Queue<Account> allAccounts = new PriorityQueue<>();
+    public static Set<Integer> accountNumbers = new HashSet<>();
 
 
     public BankerForm() {
@@ -79,6 +78,16 @@ public class BankerForm {
                 String strTotalInterest = "0";
                 double totalInterest = Double.parseDouble(strTotalInterest);
 
+                String strAccountNumber = txtAccountNumber.getText();
+                int accountNumber = Integer.parseInt(strAccountNumber);
+                accountNumbers.add(accountNumber);
+                //Test to verify that there are no duplicates.
+                //Even though it does not allow duplicate, it will still create an object
+                //Maybe next step is to pass the account number to a try catch block
+                // If finds it does not have a duplicate, return a true
+                // and continue building object. If not, maybe throw an exceptions, clear fields, start again.
+                accountNumbers.stream().forEach(Integer -> System.out.println(Integer));
+
                 String type = cmbAccountType.getSelectedItem().toString();
                 Account account = null;
                 try {
@@ -91,6 +100,7 @@ public class BankerForm {
                 account.setBalance(balance);
                 account.setInterest(interest);
                 account.setPeriods(periods);
+                account.setAccountNumber(accountNumber);
                 account.setTotalInterest(totalInterest);
 
                 if (cmbAccountType.getSelectedItem().toString().equals(Banker.CERTIFICATEOFDEPOSIT)) {
