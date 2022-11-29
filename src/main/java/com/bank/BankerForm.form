@@ -220,9 +220,9 @@
               <component id="d4d75" class="javax.swing.JList" binding="lstAccounts">
                 <constraints/>
                 <properties>
-                  <maximumSize width="600" height="200"/>
-                  <minimumSize width="200" height="200"/>
-                  <preferredSize width="400" height="200"/>
+                  <maximumSize width="500" height="500"/>
+                  <minimumSize width="500" height="200"/>
+                  <preferredSize width="500" height="200"/>
                 </properties>
               </component>
             </children>
