@@ -53,6 +53,8 @@ public class BankerForm {
           JsonReader.fetchAccounts adds the returned vector to the allAccounts priorityQueue
          */
         //allAccounts.addAll(JsonReader.fetchAccounts());
+
+        //Using GSON lib to read in json file as account objects
         jsonReader();
 
         /*
