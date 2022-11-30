@@ -24,7 +24,7 @@ public class AccountSerializer implements JsonSerializer<Account>, JsonDeseriali
         String accountType = jsonObject.get("type").getAsString();
         JsonElement element = jsonObject.get("properties");
         try {
-            return jsonDeserializationContext.deserialize(element, Class.forName(accountType));
+            return jsonDeserializationContext.deserialize(element, Class.forName("com.bank." + accountType));
         } catch (ClassNotFoundException e) {
             logger.error(e.getMessage());
             throw new JsonParseException(e);
