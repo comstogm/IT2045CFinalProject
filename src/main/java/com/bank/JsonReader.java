@@ -9,7 +9,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Vector;
 
+
+
 public class JsonReader {
+    final static String FILE = "accounts.json";
     public static Vector<Account> readAccounts = new Vector<>();
 
     public static void readAccounts(String file) {
@@ -66,7 +69,6 @@ public class JsonReader {
             ((CertificateOfDeposit) account).setMaturity(maturity);
         }
 
-
         //adds new object to the readAccounts vector
         readAccounts.add(account);
     }
@@ -76,6 +78,7 @@ public class JsonReader {
     Could be a better way to give this to the BankerForm
      */
     public static Vector<Account> fetchAccounts() {
+        readAccounts(FILE);
         return readAccounts;
     }
 }
