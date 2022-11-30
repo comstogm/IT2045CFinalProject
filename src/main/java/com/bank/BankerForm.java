@@ -1,11 +1,19 @@
 package com.bank;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class BankerForm {
@@ -35,6 +43,7 @@ public class BankerForm {
     private static final Logger logger = LogManager.getLogger("accountForm");
     public static Queue<Account> allAccounts = new PriorityQueue<>();
     public static Set<Integer> accountNumbers = new HashSet<>();
+    final static String FILE = "accounts.json";
 
     public BankerForm() {
         
@@ -43,7 +52,8 @@ public class BankerForm {
         /*
           JsonReader.fetchAccounts adds the returned vector to the allAccounts priorityQueue
          */
-        allAccounts.addAll(JsonReader.fetchAccounts());
+        //allAccounts.addAll(JsonReader.fetchAccounts());
+        jsonReader();
 
         /*
            The next two lines set the vector that will be used.
@@ -197,6 +207,21 @@ public class BankerForm {
         txtInterest.setText("");
         txtWithdrawal.setText("");
         txtPeriods.setText("");
+    }
+
+    private void jsonReader() {
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get("accounts.json"));
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapter(Account.class, new AccountSerializer());
+            Gson gson = gsonBuilder.create();
+            Vector<Account> jsonInAccounts = gson.fromJson(reader, new TypeToken<Vector<Account>>(){}.getType());
+            allAccounts.addAll(jsonInAccounts);
+            reader.close();
+        } catch (IOException e) {
+            logger.error(e);
+            throw new RuntimeException(e);
+        }
     }
 
     public static void main(String[] args) {
