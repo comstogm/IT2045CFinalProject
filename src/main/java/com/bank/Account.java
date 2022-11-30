@@ -53,17 +53,11 @@ public class Account implements Comparable<Account> {
         }
     }
 
-    // Put this here, so I can set and get balance.
-    // If you guys know how this can be put in BankerForm let me know
-    public void withdraw(double amountWithdrawn) {
-        double amountTaken = amountWithdrawn;
-        setBalance(getBalance() - amountTaken);
-    }
-
     @Override
     public String toString() {
-        return " Account Number " + df.format(getAccountNumber()) + " Balance " + df.format(getBalance()) + " Interest " + df.format(getInterest()) + " Periods " +
-                df.format(getPeriods()) + " Total Interest " + df.format(getTotalInterest());
+        return " Account Number " + df.format(getAccountNumber()) + " Balance " + df.format(getBalance()) +
+                " Interest " + df.format(getInterest()) + " Periods " + df.format(getPeriods()) +
+                " Total Interest " + df.format(getTotalInterest());
     }
 
     @Override

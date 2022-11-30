@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-
 public class BankerForm {
     private JPanel pnlMain;
     private JPanel pnlButtonBar;
@@ -34,16 +33,12 @@ public class BankerForm {
     private JLabel lbAccountNumber;
     private JTextField txtAccountNumber;
     private static final Logger logger = LogManager.getLogger("accountForm");
-    final String FILE = "accounts.json";
     public static Queue<Account> allAccounts = new PriorityQueue<>();
     public static Set<Integer> accountNumbers = new HashSet<>();
-
 
     public BankerForm() {
         
         initializeAccountTypeComboBox();
-
-        JsonReader.readAccounts(FILE);
 
         /*
           JsonReader.fetchAccounts adds the returned vector to the allAccounts priorityQueue
@@ -55,8 +50,7 @@ public class BankerForm {
            Updated the code to use a vector so that the UI would show an ordered list
             based off of interest rates
          */
-        Vector<Account> readAccounts = JsonReader.fetchAccounts();
-        lstAccounts.setListData(readAccounts);
+        lstAccounts.setListData((allAccounts.toArray()));
 
         /*
           Listens for user to click save button
@@ -114,11 +108,8 @@ public class BankerForm {
                     }
                 }
                 allAccounts.add(account);
-                readAccounts.add(account);
-                readAccounts.sort(Account::compareTo);
-                lstAccounts.updateUI();
+                lstAccounts.setListData((allAccounts.toArray()));
                 clearFields();
-                //lstAccounts.setListData(allAccounts.toArray()); //resetting ListData to show new account
             }
         });
 
@@ -130,7 +121,6 @@ public class BankerForm {
             @Override
             public void actionPerformed(ActionEvent e) {
                 allAccounts.stream().forEach(account -> {account.compute();});
-                //lstAccounts.updateUI();
                 lstAccounts.setListData(allAccounts.toArray());
 
             }
@@ -158,7 +148,7 @@ public class BankerForm {
                 String strWithdraw = txtWithdrawal.getText();
                 double withdraw = Double.parseDouble(strWithdraw);
                 withdraw(withdraw);
-                lstAccounts.updateUI();
+                lstAccounts.setListData(allAccounts.toArray());
                 clearFields();
             }
         });
