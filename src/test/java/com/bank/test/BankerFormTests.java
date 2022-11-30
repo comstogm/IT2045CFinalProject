@@ -3,6 +3,7 @@ package com.bank.test;
 import com.bank.Account;
 import com.bank.BankerForm;
 import com.bank.Savings;
+import com.bank.Withdraw;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -53,7 +54,7 @@ public class BankerFormTests {
      */
 
     public void whenWithdraw500() {
-        BankerForm.withdraw(500.0);
+        Withdraw.withdraw(500.0);
     }
 
     /*

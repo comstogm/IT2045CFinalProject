@@ -1,10 +1,16 @@
 package com.bank;
 
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
+import java.io.Reader;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Vector;
 
 public class AccountSerializer implements JsonSerializer<Account>, JsonDeserializer<Account> {
 
@@ -28,6 +34,21 @@ public class AccountSerializer implements JsonSerializer<Account>, JsonDeseriali
         } catch (ClassNotFoundException e) {
             logger.error(e.getMessage());
             throw new JsonParseException(e);
+        }
+    }
+
+    public static Vector<Account> jsonReader() {
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get("accounts.json"));
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapter(Account.class, new AccountSerializer());
+            Gson gson = gsonBuilder.create();
+            Vector<Account> jsonInAccounts = gson.fromJson(reader, new TypeToken<Vector<Account>>(){}.getType());
+            reader.close();
+            return jsonInAccounts;
+        } catch (IOException e) {
+            logger.error(e);
+            throw new RuntimeException(e);
         }
     }
 }
