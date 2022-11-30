@@ -2,6 +2,7 @@ package com.bank.test;
 
 import com.bank.Account;
 import com.bank.BankerForm;
+import com.bank.Savings;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,7 +26,7 @@ public class BankerFormTests {
     Given two accounts and place them in priority queue
      */
     @Test
-    public void withdraw_decreaseAccountWithLowestRateBy500() {
+    public void withdraw_decreaseAccountWithLowestRateBy500() throws Exception {
         givenAccountWithInterestPoint03PercentAndBalanceOf5000();
         givenAccountWithInterestTwoPercentAndBalanceOf4000();
         whenWithdraw500();
@@ -33,15 +34,15 @@ public class BankerFormTests {
     }
 
 
-    public void givenAccountWithInterestPoint03PercentAndBalanceOf5000() {
-        Account testaccount1 = new Account();
+    public void givenAccountWithInterestPoint03PercentAndBalanceOf5000() throws Exception {
+        Account testaccount1 = com.bank.accountFactory.createAccountCommand("Savings");
         testaccount1.setInterest(.03);
         testaccount1.setBalance(5000);
         BankerForm.allAccounts.add(testaccount1);
     }
 
-    public void givenAccountWithInterestTwoPercentAndBalanceOf4000() {
-        Account testaccount2 = new Account();
+    public void givenAccountWithInterestTwoPercentAndBalanceOf4000() throws Exception {
+        Account testaccount2 = com.bank.accountFactory.createAccountCommand("Savings");
         testaccount2.setInterest(2);
         testaccount2.setBalance(4000);
         BankerForm.allAccounts.add(testaccount2);
