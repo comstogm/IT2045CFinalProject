@@ -1,8 +1,9 @@
 package com.bank;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
-public class Account implements Comparable<Account> {
+public class Account implements Comparable<Account>, Serializable {
     public double balance;
     public double interest;
     public double totalInterest;
