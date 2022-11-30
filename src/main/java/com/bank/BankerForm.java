@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
@@ -87,41 +88,45 @@ public class BankerForm {
                 String strAccountNumber = txtAccountNumber.getText();
                 int accountNumber = Integer.parseInt(strAccountNumber);
                 accountNumbers.add(accountNumber);
-                //Test to verify that there are no duplicates.
-                //Even though it does not allow duplicate, it will still create an object
-                //Maybe next step is to pass the account number to a try catch block
-                // If finds it does not have a duplicate, return a true
-                // and continue building object. If not, maybe throw an exceptions, clear fields, start again.
-                accountNumbers.stream().forEach(Integer -> System.out.println(Integer));
+
+                Boolean checkAccountNumber = ExistingAccountsCheck.getInstance().accountCheck(accountNumber);
 
                 String type = cmbAccountType.getSelectedItem().toString();
-                Account account = null;
-                try {
-                    account = accountFactory.createAccountCommand(type.toString());
-                } catch (Exception ex) {
-                    logger.error(ex.getMessage());
-                    throw new RuntimeException(ex);
-                }
 
-                account.setBalance(balance);
-                account.setInterest(interest);
-                account.setPeriods(periods);
-                account.setAccountNumber(accountNumber);
-                account.setTotalInterest(totalInterest);
+                if (!checkAccountNumber) {
+                    JOptionPane.showMessageDialog(null,"Account number already exists. Clearing" +
+                            " field");
+                    txtAccountNumber.setText("");
+                } else {
 
-                if (cmbAccountType.getSelectedItem().toString().equals(Banker.CERTIFICATEOFDEPOSIT)) {
-                    if (account instanceof CertificateOfDeposit) {
-                        CertificateOfDeposit certificateOfDeposit = (CertificateOfDeposit) account;
-
-                        String strMaturity = txtMaturity.getText();
-                        int maturity = Integer.parseInt(strMaturity);
-
-                        certificateOfDeposit.setMaturity(maturity);
+                    Account account = null;
+                    try {
+                        account = accountFactory.createAccountCommand(type.toString());
+                    } catch (Exception ex) {
+                        logger.error(ex.getMessage());
+                        throw new RuntimeException(ex);
                     }
+
+                    account.setBalance(balance);
+                    account.setInterest(interest);
+                    account.setPeriods(periods);
+                    account.setAccountNumber(accountNumber);
+                    account.setTotalInterest(totalInterest);
+
+                    if (cmbAccountType.getSelectedItem().toString().equals(Banker.CERTIFICATEOFDEPOSIT)) {
+                        if (account instanceof CertificateOfDeposit) {
+                            CertificateOfDeposit certificateOfDeposit = (CertificateOfDeposit) account;
+
+                            String strMaturity = txtMaturity.getText();
+                            int maturity = Integer.parseInt(strMaturity);
+
+                            certificateOfDeposit.setMaturity(maturity);
+                        }
+                    }
+                    allAccounts.add(account);
+                    lstAccounts.setListData((allAccounts.toArray()));
+                    clearFields();
                 }
-                allAccounts.add(account);
-                lstAccounts.setListData((allAccounts.toArray()));
-                clearFields();
             }
         });
 
@@ -224,6 +229,10 @@ public class BankerForm {
             logger.error(e);
             throw new RuntimeException(e);
         }
+    }
+
+    private void accountChecker() {
+
     }
 
     public static void main(String[] args) {
