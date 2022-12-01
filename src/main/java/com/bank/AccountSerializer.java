@@ -16,6 +16,7 @@ public class AccountSerializer implements JsonSerializer<Account>, JsonDeseriali
 
     private static final Logger logger = LogManager.getLogger("accountSerializer");
 
+
     @Override
     public JsonElement serialize(Account account, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonObject result = new JsonObject();
