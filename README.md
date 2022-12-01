@@ -18,19 +18,15 @@ Description: Program can create 3 different bank account types from UI or JSON f
 
 ### AccountSerializer
 - Serializes and deserializes data for use in multiple areas of the program
-
+ - Reads through the json file using org.json.simple.parser and creates a AccountObject
+ - separates the accounts into respective data and sets the balance, period, rate, and maturity for CoD
+ - Puts account into the correct format and adds to the readAccounts Vector Array
+ 
 ### ExistingAccountsCheck
 - Streams through each account and shows result if account ID already exists
 
-### JSON Reader
- 
- #### readAccounts
- - Reads through the json file using org.json.simple.parser and creates a AccountObject
- 
- #### parseAccountObject
- - separates the accounts into respective data and sets the balance, period, rate, and maturity for CoD
- - Puts account into the correct format and adds to the readAccounts Vector Array
- - Fixes exception issue for Factory Method
+
+
 
 ### BankerForm
 
