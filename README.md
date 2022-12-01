@@ -13,6 +13,25 @@ Description: Program can create 3 different bank account types from UI or JSON f
 - Certificate of Deposit
   - Special Behavior - User is prompted to enter the term, or when the CD will reach maturity
 
+### accountFactory
+- Creates account objects
+
+### AccountSerializer
+- Serializes and deserializes data for use in multiple areas of the program
+
+### ExistingAccountsCheck
+- Streams through each account and shows result if account ID already exists
+
+### JSON Reader
+ 
+ #### readAccounts
+ - Reads through the json file using org.json.simple.parser and creates a AccountObject
+ 
+ #### parseAccountObject
+ - separates the accounts into respective data and sets the balance, period, rate, and maturity for CoD
+ - Puts account into the correct format and adds to the readAccounts Vector Array
+ - Fixes exception issue for Factory Method
+
 ### BankerForm
 
 #### Swing jPanel
@@ -22,16 +41,18 @@ Description: Program can create 3 different bank account types from UI or JSON f
   - Clickable buttons to save/create accounts (Flow panel)
     - Button: Create - create account objects
     - Button: Show final balance - Should return each accounts final balance after computations have been done
+    - Button: Withdraw - Takes amount from the Withdraw text field and subtracts it from the account with the lowest interest
 - Center: Another jPanel
   - Inner north panel: jpanel
     - Fields to enter information into
       - Drop down field: Type of account
+      - Account number
       - Beginning balance
       - Interest rate
       - Number of periods
       - Maturity
         - should only appear if account type is CD
-  - Inner center panel: Description of accounts that will be created and current balance
+  - Inner center panel: Description of accounts that will be created and current balance as well as total interest over the periods
 
 
 ### Banker(Main Method/jOptionPane)
