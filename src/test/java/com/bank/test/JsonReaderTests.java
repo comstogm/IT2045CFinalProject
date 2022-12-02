@@ -17,16 +17,14 @@ public class JsonReaderTests {
 
     @Test
     public void create_ObjectFromtestAccountsjsonFile()  {
-       givenJsonTestAccountFileAndWhenCreateAccountFromJsonTestAccount();
-       thenJsonTestAccountKeyValuePairsShouldBeAccountProperties();
+
+        jsonReadsTheJsonFileAndPushesItOntoAVector();
     }
 
     //Given json test file, read file
-    private void givenJsonTestAccountFileAndWhenCreateAccountFromJsonTestAccount() {
-        jsonReader();
-   }
+    
 
-    private void thenJsonTestAccountKeyValuePairsShouldBeAccountProperties() {
+    private void jsonReadsTheJsonFileAndPushesItOntoAVector() {
         assertEquals("com.bank.Checking", jsonReader().get(0).getClass().getName());
        assertEquals(5.0, jsonReader().get(0).getInterest());
         assertEquals(10000.0, jsonReader().get(0).getBalance());
