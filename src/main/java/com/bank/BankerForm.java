@@ -37,6 +37,7 @@ public class BankerForm {
     private static final Logger logger = LogManager.getLogger("accountForm");
     public static Queue<Account> allAccounts = new PriorityQueue<>();
     public static Set<Integer> accountNumbers = new HashSet<>();
+    private final String FILE = "accounts.json";
     static double displayTotalInterest = 0.0;
 
     public BankerForm() {
@@ -45,7 +46,7 @@ public class BankerForm {
 
         try {
             //Using GSON lib to read in json file as account objects
-            allAccounts.addAll(AccountSerializer.jsonReader());
+            allAccounts.addAll(AccountSerializer.jsonReader(FILE));
             //Add all imported account numbers to accountNumbers
             allAccounts.forEach(account -> {
                 accountNumbers.add(account.getAccountNumber());
