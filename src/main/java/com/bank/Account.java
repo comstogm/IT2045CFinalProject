@@ -61,6 +61,9 @@ public class Account implements Comparable<Account>, Serializable {
                 " Total Interest " + df.format(getTotalInterest());
     }
 
+    /*
+    compareTo used to sort priority queue objects by interest rate
+     */
     @Override
     public int compareTo(Account o) {
         int ourPriority = (int)getInterest();

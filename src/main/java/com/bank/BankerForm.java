@@ -148,6 +148,10 @@ public class BankerForm {
                 }
             }
         });
+
+        /*
+        Calls withdraw method to take money out of the account with the smallest interest rate
+         */
         btnWithdraw.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -161,7 +165,7 @@ public class BankerForm {
     }
 
     /*
-     * populates the combobox with options for account type
+     * Populates the combobox with options for account type
      */
     private void initializeAccountTypeComboBox() {
         DefaultComboBoxModel<String> accountTypesModel = new DefaultComboBoxModel<>();
@@ -171,6 +175,9 @@ public class BankerForm {
         cmbAccountType.setModel(accountTypesModel);
     }
 
+    /*
+    Clear any string data fields after a new account is created.
+     */
     private void clearFields() {
         txtAccountNumber.setText("");
         txtBalance.setText("");

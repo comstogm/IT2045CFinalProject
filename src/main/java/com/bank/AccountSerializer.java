@@ -16,7 +16,13 @@ public class AccountSerializer implements JsonSerializer<Account>, JsonDeseriali
 
     private static final Logger logger = LogManager.getLogger("accountSerializer");
 
-
+    /**
+     *
+     * @param account object
+     * @param type Read in object's account type
+     * @param jsonSerializationContext GSON library
+     *
+     */
     @Override
     public JsonElement serialize(Account account, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonObject result = new JsonObject();
@@ -25,6 +31,13 @@ public class AccountSerializer implements JsonSerializer<Account>, JsonDeseriali
         return result;
     }
 
+    /**
+     *
+     * @param jsonElement json object being read in
+     * @param type Json type property that is read and used to create that specific account type
+     * @param jsonDeserializationContext GSON library
+     *
+     */
     @Override
     public Account deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         JsonObject jsonObject = jsonElement.getAsJsonObject();
@@ -38,6 +51,11 @@ public class AccountSerializer implements JsonSerializer<Account>, JsonDeseriali
         }
     }
 
+    /**
+     * Uses custom deserialize to read in json file to create account objects
+     * @param inputFile account specific json file to read in and create objects from
+     * @return jsonInAccounts vector that contains account objects created
+     */
     public static Vector<Account> jsonReader(String inputFile) {
         try {
             Reader reader = Files.newBufferedReader(Paths.get(inputFile));

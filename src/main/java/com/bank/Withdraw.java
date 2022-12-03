@@ -3,6 +3,13 @@ package com.bank;
 import javax.swing.*;
 
 public class Withdraw {
+
+    /**
+     * Withdraws money from the account with the smallest interest rate
+     * Works with BankerForm priority queue allAccounts
+     *
+     * @param withdraw money specified by banker to withdraw from existing accounts
+     */
     public static void withdraw(double withdraw) {
         Account withdrawAccount = BankerForm.allAccounts.peek();
 
