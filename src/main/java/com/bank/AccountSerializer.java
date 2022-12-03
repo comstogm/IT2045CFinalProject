@@ -38,9 +38,9 @@ public class AccountSerializer implements JsonSerializer<Account>, JsonDeseriali
         }
     }
 
-    public static Vector<Account> jsonReader() {
+    public static Vector<Account> jsonReader(String inputFile) {
         try {
-            Reader reader = Files.newBufferedReader(Paths.get("accounts.json"));
+            Reader reader = Files.newBufferedReader(Paths.get(inputFile));
             GsonBuilder gsonBuilder = new GsonBuilder();
             gsonBuilder.registerTypeAdapter(Account.class, new AccountSerializer());
             Gson gson = gsonBuilder.create();
