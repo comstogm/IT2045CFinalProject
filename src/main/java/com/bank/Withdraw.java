@@ -1,5 +1,7 @@
 package com.bank;
 
+import javax.swing.*;
+
 public class Withdraw {
     public static void withdraw(double withdraw) {
         Account withdrawAccount = BankerForm.allAccounts.peek();
@@ -13,6 +15,13 @@ public class Withdraw {
             }
             else if (withdraw == currentBalance) {
                 Account removeAccount = BankerForm.allAccounts.poll();
+                done = true;
+            }
+            else if (withdraw > currentBalance && (BankerForm.allAccounts.size() <= 1)) {
+                withdraw = withdraw - currentBalance;
+                Account removeAccount = BankerForm.allAccounts.poll();
+                JOptionPane.showMessageDialog(null,"Withdraw overdrafted the last account!" +
+                        " Overdraft total:" + withdraw);
                 done = true;
             }
             else if (withdraw > currentBalance) {
