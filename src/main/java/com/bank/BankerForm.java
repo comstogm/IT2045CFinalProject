@@ -115,43 +115,6 @@ public class BankerForm {
                         throw new RuntimeException(ex);
                     }
                 }
-
-//                Boolean checkAccountNumber = ExistingAccountsCheck.getInstance().accountCheck(accountNumber);
-//
-//                if (!checkAccountNumber) {
-//                    JOptionPane.showMessageDialog(null,"Account number already exists. Clearing" +
-//                            " field");
-//                    txtAccountNumber.setText("");
-//                } else {
-//
-//                    Account account = null;
-//                    try {
-//                        account = accountFactory.createAccountCommand(type.toString());
-//                    } catch (Exception ex) {
-//                        logger.error(ex.getMessage());
-//                        throw new RuntimeException(ex);
-//                    }
-//
-//                    account.setBalance(balance);
-//                    account.setInterest(interest);
-//                    account.setPeriods(periods);
-//                    account.setAccountNumber(accountNumber);
-//                    account.setTotalInterest(totalInterest);
-//
-//                    if (cmbAccountType.getSelectedItem().toString().equals(Banker.CERTIFICATEOFDEPOSIT)) {
-//                        if (account instanceof CertificateOfDeposit) {
-//                            CertificateOfDeposit certificateOfDeposit = (CertificateOfDeposit) account;
-//
-//                            String strMaturity = txtMaturity.getText();
-//                            int maturity = Integer.parseInt(strMaturity);
-//
-//                            certificateOfDeposit.setMaturity(maturity);
-//                        }
-//                    }
-//                    allAccounts.add(account);
-//                    lstAccounts.setListData((allAccounts.toArray()));
-//                    clearFields();
-//                }
             }
         });
 
@@ -165,7 +128,7 @@ public class BankerForm {
                 allAccounts.forEach(account -> {account.compute();});
                 lstAccounts.setListData(allAccounts.toArray());
                 allAccounts.forEach(account -> {displayTotalInterest = displayTotalInterest + account.getTotalInterest();});
-                txtTotalInterest.setText(String.valueOf(displayTotalInterest));
+                txtTotalInterest.setText(String.valueOf(Account.df.format(displayTotalInterest)));
             }
         });
 
