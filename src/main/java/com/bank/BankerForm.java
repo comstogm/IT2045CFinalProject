@@ -108,7 +108,7 @@ public class BankerForm {
                             }
                         }
                         allAccounts.add(account);
-                        lstAccounts.setListData((allAccounts.toArray()));
+                        lstAccounts.setListData(allAccounts.stream().sorted(Account::compareTo).toArray());
                         clearFields();
 
                     } catch (Exception ex) {
